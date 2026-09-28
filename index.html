@@ -1,0 +1,2932 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#050509">
+<meta name="description" content="PANN STORE — Premium Digital Market">
+<title>PANN STORE — Premium Digital Market</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth
+}
+
+:root{
+--bg:#050509;
+--card:rgba(255,255,255,.055);
+--border:rgba(255,255,255,.12);
+--red:#ff174f;
+--pink:#ff3d82;
+--purple:#8b5cf6;
+--green:#20c463;
+--text:#fff;
+--muted:#9999aa
+}
+
+body{
+font-family:Arial,Helvetica,sans-serif;
+color:var(--text);
+background:
+radial-gradient(circle at 15% 10%,rgba(255,23,79,.14),transparent 30%),
+radial-gradient(circle at 85% 30%,rgba(139,92,246,.12),transparent 30%),
+var(--bg);
+overflow-x:hidden
+}
+
+body:before{
+content:"";
+position:fixed;
+inset:0;
+z-index:999;
+pointer-events:none;
+opacity:.025;
+background:repeating-linear-gradient(
+0deg,
+transparent 0,
+transparent 2px,
+#fff 3px
+)
+}
+
+::selection{
+background:var(--red);
+color:#fff
+}
+
+#progressBar{
+position:fixed;
+top:0;
+left:0;
+width:0;
+height:4px;
+z-index:99999;
+background:linear-gradient(
+90deg,
+var(--red),
+var(--pink),
+var(--purple)
+)
+}
+
+/* ================= INTRO ================= */
+
+.opening{
+position:fixed;
+inset:0;
+z-index:100000;
+background:#000;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+transition:1s cubic-bezier(.7,0,.2,1)
+}
+
+.opening.hide{
+opacity:0;
+visibility:hidden;
+transform:scale(1.08)
+}
+
+.intro-video{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+background:#000
+}
+
+.intro-overlay{
+position:absolute;
+inset:0;
+z-index:1;
+background:
+radial-gradient(circle at center,transparent 5%,rgba(0,0,0,.2) 40%,rgba(0,0,0,.85) 100%),
+linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.8))
+}
+
+.intro-status{
+position:absolute;
+top:32px;
+left:50%;
+transform:translateX(-50%);
+z-index:4;
+padding:7px 14px;
+border:1px solid rgba(255,255,255,.15);
+background:rgba(0,0,0,.35);
+backdrop-filter:blur(12px);
+border-radius:50px;
+font-size:10px;
+font-weight:900;
+letter-spacing:3px
+}
+
+.intro-status:before{
+content:"";
+display:inline-block;
+width:7px;
+height:7px;
+margin-right:8px;
+border-radius:50%;
+background:#00ff7b;
+box-shadow:0 0 10px #00ff7b
+}
+
+.intro-corner{
+position:absolute;
+z-index:3;
+width:70px;
+height:70px;
+border-color:rgba(255,23,79,.8);
+border-style:solid
+}
+
+.corner-tl{
+top:25px;
+left:25px;
+border-width:2px 0 0 2px
+}
+
+.corner-tr{
+top:25px;
+right:25px;
+border-width:2px 2px 0 0
+}
+
+.corner-bl{
+bottom:25px;
+left:25px;
+border-width:0 0 2px 2px
+}
+
+.corner-br{
+bottom:25px;
+right:25px;
+border-width:0 2px 2px 0
+}
+
+.opening-content{
+position:relative;
+z-index:5;
+text-align:center;
+padding:25px;
+opacity:0;
+transform:translateY(35px) scale(.96);
+transition:1s ease
+}
+
+.opening-content.show{
+opacity:1;
+transform:translateY(0) scale(1)
+}
+
+.logo-mark{
+width:105px;
+height:105px;
+margin:0 auto 22px;
+display:flex;
+align-items:center;
+justify-content:center;
+border:2px solid var(--red);
+border-radius:30px;
+font-size:42px;
+font-weight:1000;
+background:rgba(0,0,0,.25);
+backdrop-filter:blur(12px);
+box-shadow:
+0 0 25px rgba(255,23,79,.7),
+inset 0 0 30px rgba(255,23,79,.15);
+animation:pulseLogo 2s infinite
+}
+
+@keyframes pulseLogo{
+50%{
+transform:scale(1.06);
+box-shadow:
+0 0 55px rgba(255,23,79,.9),
+inset 0 0 35px rgba(255,23,79,.25)
+}
+}
+
+.opening h1{
+font-size:clamp(50px,11vw,105px);
+line-height:.85;
+letter-spacing:10px;
+font-weight:1000;
+text-shadow:
+0 0 20px rgba(255,23,79,.8),
+0 0 60px rgba(255,23,79,.35)
+}
+
+.opening-sub{
+margin:18px 0 28px;
+color:#ddd;
+letter-spacing:5px;
+font-size:12px;
+font-weight:900
+}
+
+.enter-btn{
+border:1px solid rgba(255,255,255,.2);
+color:#fff;
+background:linear-gradient(135deg,var(--red),#9e0034);
+padding:16px 34px;
+border-radius:50px;
+font-weight:1000;
+cursor:pointer;
+box-shadow:0 10px 35px rgba(255,23,79,.4);
+transition:.3s
+}
+
+.enter-btn:hover{
+transform:translateY(-4px) scale(1.04);
+box-shadow:0 15px 55px rgba(255,23,79,.6)
+}
+
+.intro-skip{
+display:block;
+margin:15px auto 0;
+border:0;
+background:none;
+color:#aaa;
+cursor:pointer;
+font-size:11px
+}
+
+/* ================= NAV ================= */
+
+nav{
+position:fixed;
+top:0;
+left:0;
+right:0;
+z-index:5000;
+height:75px;
+padding:0 6%;
+display:flex;
+align-items:center;
+justify-content:space-between;
+background:rgba(5,5,9,.72);
+backdrop-filter:blur(18px);
+border-bottom:1px solid rgba(255,255,255,.08)
+}
+
+.nav-logo{
+font-size:23px;
+font-weight:1000;
+letter-spacing:2px
+}
+
+.nav-logo span{
+color:var(--red)
+}
+
+.nav-links{
+list-style:none;
+display:flex;
+gap:28px
+}
+
+.nav-links a{
+text-decoration:none;
+color:#ddd;
+font-size:12px;
+font-weight:900;
+transition:.25s
+}
+
+.nav-links a:hover{
+color:var(--red)
+}
+
+.promo-bar{
+margin-top:75px;
+padding:10px;
+text-align:center;
+font-size:11px;
+font-weight:1000;
+letter-spacing:1.5px;
+background:linear-gradient(90deg,#650021,var(--red),#650021)
+}
+
+/* ================= STATUS ================= */
+
+.store-status{
+display:flex;
+justify-content:center;
+padding:14px 18px 0
+}
+
+.status-pill{
+display:flex;
+align-items:center;
+gap:8px;
+padding:8px 15px;
+border:1px solid rgba(0,255,123,.2);
+border-radius:50px;
+background:rgba(0,255,123,.05);
+color:#b9ffd7;
+font-size:11px;
+font-weight:900
+}
+
+.status-dot{
+width:8px;
+height:8px;
+border-radius:50%;
+background:#00ff7b;
+box-shadow:0 0 12px #00ff7b;
+animation:blink 1.5s infinite
+}
+
+@keyframes blink{
+50%{opacity:.35}
+}
+
+/* ================= GENERAL ================= */
+
+.hero{
+min-height:620px;
+padding:90px 20px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+overflow:hidden
+}
+
+.hero-content{
+max-width:950px
+}
+
+.hero-tag{
+display:inline-block;
+padding:8px 15px;
+margin-bottom:22px;
+border:1px solid rgba(255,23,79,.4);
+border-radius:50px;
+background:rgba(255,23,79,.08);
+color:#ff7294;
+font-size:11px;
+font-weight:1000;
+letter-spacing:2px
+}
+
+.hero h2{
+font-size:clamp(55px,10vw,110px);
+line-height:.86;
+letter-spacing:-6px;
+font-weight:1000
+}
+
+.hero h2 span{
+color:var(--red);
+text-shadow:0 0 40px rgba(255,23,79,.55)
+}
+
+.hero-desc{
+max-width:650px;
+margin:30px auto;
+color:var(--muted);
+line-height:1.8
+}
+
+.hero-buttons{
+display:flex;
+justify-content:center;
+gap:12px;
+flex-wrap:wrap
+}
+
+.btn{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+padding:14px 24px;
+border-radius:13px;
+text-decoration:none;
+color:#fff;
+font-weight:1000;
+border:1px solid rgba(255,255,255,.12);
+transition:.3s;
+cursor:pointer
+}
+
+.btn-primary{
+background:linear-gradient(135deg,var(--red),#a80038);
+box-shadow:0 12px 35px rgba(255,23,79,.3)
+}
+
+.btn-secondary{
+background:rgba(255,255,255,.06)
+}
+
+.btn:hover{
+transform:translateY(-4px)
+}
+
+.section{
+max-width:1400px;
+margin:auto;
+padding:80px 6%
+}
+
+.section-title{
+text-align:center;
+margin-bottom:45px
+}
+
+.section-title small{
+color:var(--red);
+font-weight:1000;
+letter-spacing:3px
+}
+
+.section-title h2{
+margin-top:10px;
+font-size:clamp(32px,5vw,55px);
+font-weight:1000
+}
+
+.section-title p{
+margin-top:12px;
+color:#9999aa
+}
+
+/* ================= PROMO ================= */
+
+.promo-grid{
+display:grid;
+grid-template-columns:1.4fr 1fr;
+gap:18px
+}
+
+.promo-card{
+position:relative;
+overflow:hidden;
+padding:30px;
+border:1px solid rgba(255,23,79,.25);
+border-radius:25px;
+background:
+radial-gradient(circle at 80% 20%,rgba(255,23,79,.2),transparent 40%),
+rgba(255,255,255,.035)
+}
+
+.promo-card h3{
+font-size:28px;
+margin-bottom:10px
+}
+
+.promo-card p{
+color:#aaa;
+line-height:1.6
+}
+
+.promo-label{
+display:inline-block;
+margin-bottom:15px;
+padding:6px 10px;
+border-radius:7px;
+background:var(--red);
+font-size:9px;
+font-weight:1000
+}
+
+.countdown{
+display:flex;
+gap:8px;
+margin-top:20px
+}
+
+.time-box{
+min-width:60px;
+padding:10px;
+text-align:center;
+border:1px solid var(--border);
+border-radius:10px;
+background:rgba(0,0,0,.25)
+}
+
+.time-box strong{
+display:block;
+font-size:20px
+}
+
+.time-box span{
+font-size:8px;
+color:#999
+}
+
+/* ================= STATS ================= */
+
+.stats{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px
+}
+
+.stat{
+padding:25px;
+text-align:center;
+border:1px solid var(--border);
+border-radius:20px;
+background:var(--card);
+backdrop-filter:blur(10px)
+}
+
+.stat strong{
+display:block;
+margin-bottom:7px;
+color:var(--red);
+font-size:32px
+}
+
+.stat span{
+color:#aaa;
+font-size:11px;
+font-weight:900;
+letter-spacing:2px
+}
+
+/* ================= FEATURES ================= */
+
+.feature-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:16px
+}
+
+.feature{
+padding:25px;
+border-radius:22px;
+border:1px solid var(--border);
+background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.025));
+transition:.35s
+}
+
+.feature:hover{
+transform:translateY(-8px);
+border-color:rgba(255,23,79,.5)
+}
+
+.feature-icon{
+font-size:35px;
+margin-bottom:15px
+}
+
+.feature h3{
+margin-bottom:10px
+}
+
+.feature p{
+color:#999;
+font-size:14px;
+line-height:1.6
+}
+
+/* ================= PRODUCTS ================= */
+
+.filters{
+display:flex;
+justify-content:center;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:30px
+}
+
+.search{
+width:min(500px,100%);
+padding:14px 18px;
+color:#fff;
+background:rgba(255,255,255,.06);
+border:1px solid var(--border);
+border-radius:14px;
+outline:none
+}
+
+.filter-btn{
+padding:12px 18px;
+border-radius:12px;
+border:1px solid var(--border);
+background:rgba(255,255,255,.05);
+color:#ddd;
+cursor:pointer;
+font-weight:900
+}
+
+.filter-btn.active,
+.filter-btn:hover{
+background:var(--red);
+border-color:var(--red)
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:18px
+}
+
+.product{
+position:relative;
+overflow:hidden;
+min-height:300px;
+padding:25px;
+display:flex;
+flex-direction:column;
+border:1px solid var(--border);
+border-radius:24px;
+background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.025));
+transition:.35s
+}
+
+.product:hover{
+transform:translateY(-9px);
+border-color:rgba(255,23,79,.5);
+box-shadow:0 25px 60px rgba(0,0,0,.4)
+}
+
+.badge{
+position:absolute;
+top:15px;
+right:15px;
+padding:6px 9px;
+border-radius:7px;
+background:var(--red);
+font-size:9px;
+font-weight:1000
+}
+
+.product-icon{
+font-size:42px;
+margin-bottom:20px
+}
+
+.product h3{
+margin-bottom:10px;
+font-size:18px
+}
+
+.product p{
+min-height:45px;
+color:#9c9cab;
+font-size:13px;
+line-height:1.6
+}
+
+.price{
+margin-top:auto;
+padding:20px 0;
+font-size:25px;
+font-weight:1000
+}
+
+.price span{
+color:var(--red)
+}
+
+.product-actions{
+display:grid;
+grid-template-columns:1fr 45px;
+gap:7px
+}
+
+.order-btn,
+.detail-btn{
+padding:13px;
+border:0;
+border-radius:12px;
+color:#fff;
+font-weight:1000;
+cursor:pointer;
+transition:.3s
+}
+
+.order-btn{
+background:linear-gradient(135deg,var(--red),#a90036)
+}
+
+.detail-btn{
+background:rgba(255,255,255,.08);
+border:1px solid var(--border)
+}
+
+.order-btn:hover,
+.detail-btn:hover{
+transform:scale(1.03)
+}
+
+/* ================= VIDEO ================= */
+
+.video-box{
+max-width:950px;
+margin:auto;
+overflow:hidden;
+border:1px solid var(--border);
+border-radius:25px;
+background:#000;
+box-shadow:0 25px 80px rgba(0,0,0,.5)
+}
+
+.video-box video{
+width:100%;
+display:block
+}
+
+/* ================= ORDER ================= */
+
+.order-steps{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:16px
+}
+
+.step{
+padding:25px;
+border:1px solid var(--border);
+border-radius:20px;
+background:var(--card)
+}
+
+.step-number{
+width:42px;
+height:42px;
+margin-bottom:18px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+background:var(--red);
+font-weight:1000
+}
+
+.step h3{
+margin-bottom:8px
+}
+
+.step p{
+color:#999;
+font-size:13px;
+line-height:1.6
+}
+
+/* ================= CTA ================= */
+
+.cta{
+max-width:1000px;
+margin:auto;
+padding:70px 30px;
+text-align:center;
+border:1px solid rgba(255,23,79,.3);
+border-radius:30px;
+background:
+radial-gradient(circle at center,rgba(255,23,79,.14),transparent 65%),
+rgba(255,255,255,.03)
+}
+
+.cta h2{
+font-size:clamp(35px,6vw,65px);
+font-weight:1000
+}
+
+.cta p{
+margin:15px auto 25px;
+color:#aaa
+}
+
+/* ================= FAQ ================= */
+
+.faq{
+max-width:850px;
+margin:auto
+}
+
+details{
+margin-bottom:12px;
+overflow:hidden;
+border:1px solid var(--border);
+border-radius:16px;
+background:rgba(255,255,255,.035)
+}
+
+summary{
+padding:20px;
+cursor:pointer;
+font-weight:900
+}
+
+details p{
+padding:0 20px 20px;
+color:#999;
+line-height:1.7
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+padding:60px 6% 100px;
+text-align:center;
+border-top:1px solid var(--border);
+background:#030307
+}
+
+.footer-logo{
+margin-bottom:12px;
+font-size:30px;
+font-weight:1000
+}
+
+.footer-logo span{
+color:var(--red)
+}
+
+footer p{
+color:#777;
+font-size:13px
+}
+
+/* ================= FLOAT ================= */
+
+.float-btn{
+position:fixed;
+z-index:6000;
+width:52px;
+height:52px;
+display:flex;
+align-items:center;
+justify-content:center;
+border:0;
+border-radius:50%;
+color:#fff;
+font-size:20px;
+cursor:pointer;
+box-shadow:0 10px 30px rgba(0,0,0,.4)
+}
+
+#waBtn{
+left:20px;
+bottom:20px;
+background:var(--green);
+text-decoration:none
+}
+
+#musicBtn{
+right:20px;
+bottom:85px;
+background:#171720;
+border:1px solid rgba(255,255,255,.12)
+}
+
+#backTop{
+right:20px;
+bottom:20px;
+background:var(--red);
+opacity:0
+}
+
+/* ================= STICKY ================= */
+
+.sticky-order{
+position:fixed;
+left:50%;
+bottom:18px;
+z-index:5500;
+transform:translate(-50%,120px);
+width:min(560px,calc(100% - 110px));
+padding:10px;
+display:flex;
+align-items:center;
+gap:10px;
+border:1px solid rgba(255,255,255,.14);
+border-radius:18px;
+background:rgba(10,10,16,.88);
+backdrop-filter:blur(18px);
+box-shadow:0 15px 50px rgba(0,0,0,.5);
+transition:.4s
+}
+
+.sticky-order.show{
+transform:translate(-50%,0)
+}
+
+.sticky-order-info{
+flex:1;
+min-width:0
+}
+
+.sticky-order-info strong{
+display:block;
+font-size:12px
+}
+
+.sticky-order-info span{
+display:block;
+margin-top:3px;
+color:#999;
+font-size:10px
+}
+
+.sticky-order-btn{
+padding:12px 16px;
+border:0;
+border-radius:11px;
+background:var(--red);
+color:#fff;
+font-weight:1000;
+cursor:pointer
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+position:fixed;
+inset:0;
+z-index:90000;
+display:none;
+align-items:center;
+justify-content:center;
+padding:20px;
+background:rgba(0,0,0,.75);
+backdrop-filter:blur(10px)
+}
+
+.modal.show{
+display:flex
+}
+
+.modal-card{
+position:relative;
+width:min(520px,100%);
+padding:30px;
+border:1px solid rgba(255,255,255,.14);
+border-radius:25px;
+background:#101016;
+box-shadow:0 30px 100px rgba(0,0,0,.6);
+animation:modalIn .3s ease
+}
+
+@keyframes modalIn{
+from{
+opacity:0;
+transform:scale(.9) translateY(20px)
+}
+to{
+opacity:1;
+transform:scale(1) translateY(0)
+}
+}
+
+.close-modal{
+position:absolute;
+top:14px;
+right:14px;
+width:36px;
+height:36px;
+border:0;
+border-radius:50%;
+background:rgba(255,255,255,.08);
+color:#fff;
+cursor:pointer;
+font-size:18px
+}
+
+.modal-icon{
+font-size:55px;
+margin-bottom:15px
+}
+
+.modal-card h2{
+margin-bottom:8px
+}
+
+.modal-price{
+margin:20px 0;
+font-size:30px;
+font-weight:1000;
+color:var(--red)
+}
+
+.modal-desc{
+color:#aaa;
+line-height:1.7;
+margin-bottom:20px
+}
+
+.modal-actions{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px
+}
+
+/* ================= CART ================= */
+
+.cart-panel{
+position:fixed;
+top:0;
+right:0;
+z-index:80000;
+width:min(430px,100%);
+height:100vh;
+padding:25px;
+background:#0b0b11;
+border-left:1px solid var(--border);
+box-shadow:-20px 0 70px rgba(0,0,0,.5);
+transform:translateX(110%);
+transition:.45s;
+overflow-y:auto
+}
+
+.cart-panel.show{
+transform:translateX(0)
+}
+
+.cart-head{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding-bottom:20px;
+border-bottom:1px solid var(--border)
+}
+
+.cart-head h2{
+font-size:23px
+}
+
+.cart-close{
+width:38px;
+height:38px;
+border:0;
+border-radius:50%;
+background:rgba(255,255,255,.08);
+color:#fff;
+cursor:pointer
+}
+
+.cart-items{
+padding:20px 0
+}
+
+.cart-item{
+display:grid;
+grid-template-columns:1fr auto;
+gap:10px;
+padding:15px 0;
+border-bottom:1px solid rgba(255,255,255,.08)
+}
+
+.cart-item strong{
+display:block;
+font-size:13px
+}
+
+.cart-item span{
+display:block;
+margin-top:5px;
+color:var(--red);
+font-size:12px;
+font-weight:900
+}
+
+.remove-cart{
+padding:7px 10px;
+border:0;
+border-radius:8px;
+background:rgba(255,23,79,.12);
+color:#ff7294;
+cursor:pointer
+}
+
+.cart-empty{
+padding:45px 10px;
+text-align:center;
+color:#777
+}
+
+.cart-total{
+padding:20px 0;
+border-top:1px solid var(--border);
+display:flex;
+justify-content:space-between;
+font-weight:1000
+}
+
+.cart-total span{
+color:var(--red)
+}
+
+.cart-order{
+width:100%;
+padding:15px;
+border:0;
+border-radius:13px;
+background:linear-gradient(135deg,var(--red),#a90036);
+color:#fff;
+font-weight:1000;
+cursor:pointer
+}
+
+.cart-button{
+position:fixed;
+right:20px;
+bottom:150px;
+z-index:6000;
+width:52px;
+height:52px;
+border:1px solid rgba(255,255,255,.12);
+border-radius:50%;
+background:#171720;
+color:#fff;
+cursor:pointer;
+font-size:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.4)
+}
+
+.cart-count{
+position:absolute;
+top:-4px;
+right:-4px;
+width:20px;
+height:20px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+background:var(--red);
+font-size:10px;
+font-weight:1000
+}
+
+/* ================= REVEAL ================= */
+
+.reveal{
+opacity:0;
+transform:translateY(25px);
+transition:.7s ease
+}
+
+.reveal.show{
+opacity:1;
+transform:translateY(0)
+}
+
+.mobile-nav{
+display:none
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:1000px){
+
+.products{
+grid-template-columns:repeat(2,1fr)
+}
+
+.feature-grid{
+grid-template-columns:repeat(2,1fr)
+}
+
+.order-steps{
+grid-template-columns:repeat(2,1fr)
+}
+
+.promo-grid{
+grid-template-columns:1fr
+}
+
+}
+
+@media(max-width:700px){
+
+nav{
+padding:0 18px
+}
+
+.nav-links{
+display:none
+}
+
+.nav-logo{
+font-size:20px
+}
+
+.promo-bar{
+font-size:9px
+}
+
+.hero{
+min-height:580px
+}
+
+.hero h2{
+letter-spacing:-3px
+}
+
+.stats,
+.products,
+.feature-grid,
+.order-steps{
+grid-template-columns:1fr
+}
+
+.section{
+padding:65px 18px
+}
+
+.mobile-nav{
+position:fixed;
+z-index:5000;
+bottom:0;
+left:0;
+right:0;
+display:flex;
+justify-content:space-around;
+padding:10px;
+border-top:1px solid var(--border);
+background:rgba(5,5,10,.92);
+backdrop-filter:blur(15px)
+}
+
+.mobile-nav a{
+color:#aaa;
+text-decoration:none;
+text-align:center;
+font-size:10px;
+font-weight:900
+}
+
+.mobile-nav a span{
+display:block;
+margin-bottom:3px;
+font-size:18px
+}
+
+.intro-status{
+top:20px
+}
+
+.intro-corner{
+width:45px;
+height:45px
+}
+
+.opening h1{
+letter-spacing:6px
+}
+
+.sticky-order{
+width:calc(100% - 90px);
+bottom:72px
+}
+
+.cart-button{
+bottom:145px
+}
+
+#musicBtn{
+bottom:85px
+}
+
+#waBtn{
+bottom:72px
+}
+
+#backTop{
+bottom:72px
+}
+
+.modal-actions{
+grid-template-columns:1fr
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= INTRO VIDEO ================= -->
+
+<div class="opening" id="opening">
+
+<video
+id="introVideo"
+class="intro-video"
+autoplay
+muted
+playsinline
+preload="auto"
+loop="false">
+
+<source
+src="ssstik.io_@offxerc_1790603497633.mp4"
+type="video/mp4">
+
+Browser kamu tidak mendukung video.
+
+</video>
+
+<div class="intro-overlay"></div>
+
+<div class="intro-status">
+PANN STORE • LOADING
+</div>
+
+<div class="intro-corner corner-tl"></div>
+<div class="intro-corner corner-tr"></div>
+<div class="intro-corner corner-bl"></div>
+<div class="intro-corner corner-br"></div>
+
+<div class="opening-content" id="openingContent">
+
+<div class="logo-mark">P</div>
+
+<h1>PANN</h1>
+
+<div class="opening-sub">
+PREMIUM DIGITAL MARKET
+</div>
+
+<button
+class="enter-btn"
+id="enterStore">
+ENTER STORE ⚡
+</button>
+
+<button
+class="intro-skip"
+id="skipIntro">
+Lewati intro
+</button>
+
+</div>
+</div>
+
+<div id="progressBar"></div>
+
+<!-- ================= NAV ================= -->
+
+<nav>
+
+<div class="nav-logo">
+PANN<span>STORE</span>
+</div>
+
+<ul class="nav-links">
+
+<li><a href="#home">HOME</a></li>
+<li><a href="#promo">PROMO</a></li>
+<li><a href="#produk">PRODUK</a></li>
+<li><a href="#video">VIDEO</a></li>
+<li><a href="#cara">CARA ORDER</a></li>
+<li><a href="#faq">FAQ</a></li>
+<li><a href="#order">ORDER</a></li>
+
+</ul>
+
+</nav>
+
+<div class="promo-bar">
+✦ PANN STORE — PREMIUM DIGITAL MARKET ✦
+&nbsp; • &nbsp;
+CEK PRODUK SEBELUM ORDER
+</div>
+
+<!-- ================= STATUS ================= -->
+
+<div class="store-status">
+
+<div class="status-pill">
+<span class="status-dot"></span>
+PANN STORE ONLINE • SIAP MELAYANI
+</div>
+
+</div>
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+<div class="hero-content reveal">
+
+<div class="hero-tag">
+⚡ PREMIUM DIGITAL MARKET
+</div>
+
+<h2>
+PANN<br>
+<span>STORE.</span>
+</h2>
+
+<p class="hero-desc">
+Tempat layanan digital dengan tampilan modern,
+proses order mudah, informasi jelas,
+dan akses langsung ke WhatsApp.
+</p>
+
+<div class="hero-buttons">
+
+<a
+class="btn btn-primary"
+href="#produk">
+🛒 LIHAT PRODUK
+</a>
+
+<a
+class="btn btn-secondary"
+href="https://wa.me/6285879543886?text=Halo%20PANN%20STORE%2C%20saya%20mau%20order"
+target="_blank">
+💬 CHAT WHATSAPP
+</a>
+
+</div>
+</div>
+</section>
+
+<!-- ================= PROMO ================= -->
+
+<section class="section" id="promo">
+
+<div class="section-title reveal">
+
+<small>SPECIAL AREA</small>
+
+<h2>
+PROMO & INFO
+</h2>
+
+<p>
+Cek informasi sebelum menentukan produk.
+</p>
+
+</div>
+
+<div class="promo-grid">
+
+<div class="promo-card reveal">
+
+<div class="promo-label">
+🔥 INFO STORE
+</div>
+
+<h3>
+Cari produk yang kamu butuhkan.
+</h3>
+
+<p>
+Gunakan pencarian dan filter produk
+agar lebih cepat menemukan layanan
+yang tersedia.
+</p>
+
+<div class="countdown">
+
+<div class="time-box">
+<strong id="days">00</strong>
+<span>HARI</span>
+</div>
+
+<div class="time-box">
+<strong id="hours">00</strong>
+<span>JAM</span>
+</div>
+
+<div class="time-box">
+<strong id="minutes">00</strong>
+<span>MENIT</span>
+</div>
+
+<div class="time-box">
+<strong id="seconds">00</strong>
+<span>DETIK</span>
+</div>
+
+</div>
+</div>
+
+<div class="promo-card reveal">
+
+<div class="promo-label">
+💬 ORDER
+</div>
+
+<h3>
+Butuh bantuan?
+</h3>
+
+<p>
+Kalau masih bingung memilih,
+langsung hubungi PANN STORE
+melalui WhatsApp.
+</p>
+
+<br>
+
+<a
+class="btn btn-primary"
+href="https://wa.me/6285879543886?text=Halo%20PANN%20STORE%2C%20saya%20mau%20tanya%20produk"
+target="_blank">
+TANYA SEKARANG →
+</a>
+
+</div>
+</div>
+</section>
+
+<!-- ================= STATS ================= -->
+
+<section class="section">
+
+<div class="stats reveal">
+
+<div class="stat">
+<strong>24/7</strong>
+<span>ORDER ONLINE</span>
+</div>
+
+<div class="stat">
+<strong>⚡</strong>
+<span>FAST RESPONSE</span>
+</div>
+
+<div class="stat">
+<strong>100%</strong>
+<span>ONLINE MARKET</span>
+</div>
+
+</div>
+</section>
+
+<!-- ================= FEATURES ================= -->
+
+<section class="section">
+
+<div class="section-title reveal">
+
+<small>WHY PANN STORE</small>
+
+<h2>
+KENAPA PANN?
+</h2>
+
+<p>
+Semua dibuat simpel supaya pelanggan mudah order.
+</p>
+
+</div>
+
+<div class="feature-grid">
+
+<div class="feature reveal">
+<div class="feature-icon">⚡</div>
+<h3>Fast Response</h3>
+<p>
+Order langsung diarahkan ke WhatsApp.
+</p>
+</div>
+
+<div class="feature reveal">
+<div class="feature-icon">🛒</div>
+<h3>Easy Order</h3>
+<p>
+Pilih produk lalu lanjutkan order.
+</p>
+</div>
+
+<div class="feature reveal">
+<div class="feature-icon">🔎</div>
+<h3>Mudah Dicari</h3>
+<p>
+Gunakan search dan filter produk.
+</p>
+</div>
+
+<div class="feature reveal">
+<div class="feature-icon">💎</div>
+<h3>Premium Design</h3>
+<p>
+Tampilan dark neon modern dan responsif.
+</p>
+</div>
+
+</div>
+</section>
+
+<!-- ================= PRODUK ================= -->
+
+<section class="section" id="produk">
+
+<div class="section-title reveal">
+
+<small>CATALOG</small>
+
+<h2>
+PRODUK PANN
+</h2>
+
+<p>
+Klik detail untuk melihat informasi atau tambahkan ke keranjang.
+</p>
+
+</div>
+
+<div class="filters">
+
+<input
+class="search"
+id="search"
+type="text"
+placeholder="🔎 Cari produk...">
+
+<button
+class="filter-btn active"
+data-filter="all">
+SEMUA
+</button>
+
+<button
+class="filter-btn"
+data-filter="nokos">
+NOKOS
+</button>
+
+<button
+class="filter-btn"
+data-filter="verif">
+VERIF
+</button>
+
+</div>
+
+<div
+class="products"
+id="products">
+</div>
+
+</section>
+
+<!-- ================= VIDEO ================= -->
+
+<section class="section" id="video">
+
+<div class="section-title reveal">
+
+<small>SHOWCASE</small>
+
+<h2>
+VIDEO PANN STORE
+</h2>
+
+<p>
+Lihat showcase PANN STORE.
+</p>
+
+</div>
+
+<div class="video-box reveal">
+
+<video
+controls
+playsinline
+preload="metadata">
+
+<source
+src="ssstik.io_@offxerc_1790603497633.mp4"
+type="video/mp4">
+
+Browser kamu tidak mendukung video.
+
+</video>
+
+</div>
+</section>
+
+<!-- ================= CARA ORDER ================= -->
+
+<section class="section" id="cara">
+
+<div class="section-title reveal">
+
+<small>HOW TO ORDER</small>
+
+<h2>
+CARA ORDER
+</h2>
+
+<p>
+Order dengan beberapa langkah sederhana.
+</p>
+
+</div>
+
+<div class="order-steps">
+
+<div class="step reveal">
+<div class="step-number">1</div>
+<h3>Pilih Produk</h3>
+<p>
+Cari produk yang kamu butuhkan.
+</p>
+</div>
+
+<div class="step reveal">
+<div class="step-number">2</div>
+<h3>Lihat Detail</h3>
+<p>
+Cek informasi dan harga produk.
+</p>
+</div>
+
+<div class="step reveal">
+<div class="step-number">3</div>
+<h3>Masukkan Keranjang</h3>
+<p>
+Kamu bisa memilih lebih dari satu produk.
+</p>
+</div>
+
+<div class="step reveal">
+<div class="step-number">4</div>
+<h3>Order WhatsApp</h3>
+<p>
+Kirim ringkasan pilihan ke WhatsApp.
+</p>
+</div>
+
+</div>
+</section>
+
+<!-- ================= CTA ================= -->
+
+<section class="section">
+
+<div class="cta reveal" id="order">
+
+<h2>
+SIAP ORDER?
+</h2>
+
+<p>
+Pilih produk atau langsung hubungi PANN STORE.
+</p>
+
+<a
+class="btn btn-primary"
+href="https://wa.me/6285879543886?text=Halo%20PANN%20STORE%2C%20saya%20mau%20order"
+target="_blank">
+💬 ORDER VIA WHATSAPP
+</a>
+
+</div>
+</section>
+
+<!-- ================= FAQ ================= -->
+
+<section class="section" id="faq">
+
+<div class="section-title reveal">
+
+<small>FAQ</small>
+
+<h2>
+PERTANYAAN
+</h2>
+
+<p>
+Informasi sebelum melakukan order.
+</p>
+
+</div>
+
+<div class="faq">
+
+<details class="reveal">
+
+<summary>
+Bagaimana cara order?
+</summary>
+
+<p>
+Pilih produk, buka detail atau masukkan
+ke keranjang, lalu lanjutkan ke WhatsApp.
+</p>
+
+</details>
+
+<details class="reveal">
+
+<summary>
+Bisa tanya dulu?
+</summary>
+
+<p>
+Bisa. Hubungi WhatsApp PANN STORE
+untuk menanyakan informasi produk.
+</p>
+
+</details>
+
+<details class="reveal">
+
+<summary>
+Nomor WhatsApp PANN STORE?
+</summary>
+
+<p>
+085879543886
+</p>
+
+</details>
+
+<details class="reveal">
+
+<summary>
+Website bisa dibuka di HP?
+</summary>
+
+<p>
+Bisa. Tampilan sudah dibuat responsif
+untuk HP, tablet, dan desktop.
+</p>
+
+</details>
+
+</div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<div class="footer-logo">
+PANN<span>STORE</span>
+</div>
+
+<p>
+© 2026 PANN STORE. Premium Digital Market.
+</p>
+
+</footer>
+
+<!-- ================= FLOAT WA ================= -->
+
+<a
+id="waBtn"
+class="float-btn"
+href="https://wa.me/6285879543886?text=Halo%20PANN%20STORE%2C%20saya%20mau%20order"
+target="_blank"
+title="WhatsApp">
+💬
+</a>
+
+<!-- ================= MUSIC ================= -->
+
+<button
+id="musicBtn"
+class="float-btn"
+title="Musik">
+🔊
+</button>
+
+<!-- ================= TOP ================= -->
+
+<button
+id="backTop"
+class="float-btn"
+title="Kembali ke atas">
+↑
+</button>
+
+<!-- ================= CART BUTTON ================= -->
+
+<button
+class="cart-button"
+id="cartButton"
+title="Keranjang">
+
+🛒
+
+<span
+class="cart-count"
+id="cartCount">
+0
+</span>
+
+</button>
+
+<!-- ================= STICKY ORDER ================= -->
+
+<div
+class="sticky-order"
+id="stickyOrder">
+
+<div class="sticky-order-info">
+
+<strong>
+🛒 Mau langsung order?
+</strong>
+
+<span>
+Pilih produk lalu lanjutkan ke WhatsApp.
+</span>
+
+</div>
+
+<button
+class="sticky-order-btn"
+onclick="openCart()">
+BUKA KERANJANG
+</button>
+
+</div>
+
+<!-- ================= MOBILE NAV ================= -->
+
+<div class="mobile-nav">
+
+<a href="#home">
+<span>⌂</span>
+HOME
+</a>
+
+<a href="#promo">
+<span>🔥</span>
+PROMO
+</a>
+
+<a href="#produk">
+<span>🛒</span>
+PRODUK
+</a>
+
+<a href="#order">
+<span>💬</span>
+ORDER
+</a>
+
+</div>
+
+<!-- ================= PRODUCT MODAL ================= -->
+
+<div
+class="modal"
+id="productModal">
+
+<div class="modal-card">
+
+<button
+class="close-modal"
+onclick="closeModal()">
+×
+</button>
+
+<div
+class="modal-icon"
+id="modalIcon">
+📦
+</div>
+
+<h2 id="modalName">
+Produk
+</h2>
+
+<div
+class="modal-price"
+id="modalPrice">
+Rp0
+</div>
+
+<p
+class="modal-desc"
+id="modalDesc">
+Informasi produk.
+</p>
+
+<div class="modal-actions">
+
+<button
+class="btn btn-secondary"
+id="modalCartBtn">
+🛒 TAMBAH
+</button>
+
+<button
+class="btn btn-primary"
+id="modalOrderBtn">
+💬 ORDER
+</button>
+
+</div>
+</div>
+</div>
+
+<!-- ================= CART PANEL ================= -->
+
+<div
+class="cart-panel"
+id="cartPanel">
+
+<div class="cart-head">
+
+<h2>
+🛒 Keranjang
+</h2>
+
+<button
+class="cart-close"
+onclick="closeCart()">
+×
+</button>
+
+</div>
+
+<div
+class="cart-items"
+id="cartItems">
+</div>
+
+<div class="cart-total">
+
+<span>
+TOTAL
+</span>
+
+<span id="cartTotal">
+Rp0
+</span>
+
+</div>
+
+<button
+class="cart-order"
+id="cartOrder">
+💬 LANJUT ORDER VIA WHATSAPP
+</button>
+
+</div>
+
+<!-- ================= AUDIO ================= -->
+
+<audio
+id="bgSound"
+loop
+preload="auto">
+
+<source
+src="ssstik.io_1790605900651.mp3"
+type="audio/mpeg">
+
+Browser kamu tidak mendukung audio.
+
+</audio>
+
+<script>
+
+/* ================= DATA PRODUK ================= */
+
+const productsData=[
+
+{
+name:"NOKOS BIASA",
+price:7000,
+category:"nokos",
+icon:"📱",
+badge:"READY",
+desc:"NOKOS biasa untuk kebutuhan digital."
+},
+
+{
+name:"NOKOS V1",
+price:25000,
+category:"nokos",
+icon:"⚡",
+badge:"POPULAR",
+desc:"V1 — PAKE TRICK."
+},
+
+{
+name:"NOKOS V2",
+price:35000,
+category:"nokos",
+icon:"🔥",
+badge:"HOT",
+desc:"V2 — PAKE TRICK."
+},
+
+{
+name:"NOKOS V3",
+price:45000,
+category:"nokos",
+icon:"💎",
+badge:"PREMIUM",
+desc:"V3 — SUNG PAKE."
+},
+
+{
+name:"NOKOS CENTANG BIRU",
+price:150000,
+category:"nokos",
+icon:"🔵",
+badge:"PREMIUM",
+desc:"Layanan NOKOS centang biru."
+},
+
+{
+name:"VERIF META",
+price:50000,
+category:"verif",
+icon:"✓",
+badge:"READY",
+desc:"Layanan Verif Meta."
+},
+
+{
+name:"CEBIR + META ONE",
+price:220000,
+category:"verif",
+icon:"💠",
+badge:"BEST",
+desc:"Paket CEBIR + META ONE."
+},
+
+{
+name:"VERIF META + META ONE",
+price:150000,
+category:"verif",
+icon:"🛡️",
+badge:"POPULAR",
+desc:"Paket Verif Meta + Meta One."
+}
+
+];
+
+let currentFilter="all";
+let cart=[];
+
+/* ================= FORMAT ================= */
+
+function formatRupiah(number){
+
+return new Intl.NumberFormat(
+"id-ID",
+{
+style:"currency",
+currency:"IDR",
+maximumFractionDigits:0
+}
+).format(number);
+
+}
+
+/* ================= RENDER PRODUK ================= */
+
+function renderProducts(){
+
+const searchInput=document.getElementById("search");
+
+const keyword=searchInput
+.value
+.toLowerCase()
+.trim();
+
+const filtered=productsData.filter(product=>{
+
+const matchCategory=
+currentFilter==="all"||
+product.category===currentFilter;
+
+const matchSearch=
+product.name.toLowerCase().includes(keyword)||
+product.desc.toLowerCase().includes(keyword);
+
+return matchCategory&&matchSearch;
+
+});
+
+const container=document.getElementById("products");
+
+container.innerHTML="";
+
+if(!filtered.length){
+
+container.innerHTML=`
+<div style="
+grid-column:1/-1;
+padding:50px;
+text-align:center;
+color:#888">
+Produk tidak ditemukan.
+</div>`;
+
+return;
+
+}
+
+filtered.forEach((product,index)=>{
+
+const card=document.createElement("div");
+
+card.className="product reveal";
+
+card.innerHTML=`
+
+<div class="badge">
+${product.badge}
+</div>
+
+<div class="product-icon">
+${product.icon}
+</div>
+
+<h3>
+${product.name}
+</h3>
+
+<p>
+${product.desc}
+</p>
+
+<div class="price">
+<span>
+${formatRupiah(product.price)}
+</span>
+</div>
+
+<div class="product-actions">
+
+<button
+class="order-btn"
+onclick="addToCartByName('${product.name}')">
+
+🛒 TAMBAH
+
+</button>
+
+<button
+class="detail-btn"
+onclick="openProduct('${product.name}')">
+
+ⓘ
+
+</button>
+
+</div>
+`;
+
+container.appendChild(card);
+
+setTimeout(()=>{
+card.classList.add("show");
+},index*70);
+
+});
+
+}
+
+/* ================= SEARCH FILTER ================= */
+
+document
+.getElementById("search")
+.addEventListener(
+"input",
+renderProducts
+);
+
+document
+.querySelectorAll(".filter-btn")
+.forEach(button=>{
+
+button.addEventListener(
+"click",
+()=>{
+
+document
+.querySelectorAll(".filter-btn")
+.forEach(btn=>{
+btn.classList.remove("active");
+});
+
+button.classList.add("active");
+
+currentFilter=button.dataset.filter;
+
+renderProducts();
+
+}
+);
+
+});
+
+/* ================= PRODUCT DETAIL ================= */
+
+function openProduct(name){
+
+const product=productsData.find(
+p=>p.name===name
+);
+
+if(!product)return;
+
+document
+.getElementById("modalIcon")
+.textContent=product.icon;
+
+document
+.getElementById("modalName")
+.textContent=product.name;
+
+document
+.getElementById("modalPrice")
+.textContent=
+formatRupiah(product.price);
+
+document
+.getElementById("modalDesc")
+.textContent=
+product.desc;
+
+document
+.getElementById("productModal")
+.classList.add("show");
+
+document
+.getElementById("modalCartBtn")
+.onclick=()=>{
+addToCart(product);
+closeModal();
+};
+
+document
+.getElementById("modalOrderBtn")
+.onclick=()=>{
+orderProduct(product);
+};
+
+}
+
+function closeModal(){
+
+document
+.getElementById("productModal")
+.classList.remove("show");
+
+}
+
+document
+.getElementById("productModal")
+.addEventListener(
+"click",
+e=>{
+
+if(e.target.id==="productModal"){
+closeModal();
+}
+
+}
+);
+
+/* ================= ORDER LANGSUNG ================= */
+
+function orderProduct(product){
+
+const text=
+"Halo PANN STORE 👋%0A%0A"+
+"Saya mau order:%0A"+
+"📦 "+
+encodeURIComponent(product.name)+
+"%0A💰 "+
+encodeURIComponent(
+formatRupiah(product.price)
+)+
+"%0A%0AMohon info selanjutnya.";
+
+window.open(
+"https://wa.me/6285879543886?text="+text,
+"_blank"
+);
+
+}
+
+/* ================= CART ================= */
+
+function addToCart(product){
+
+cart.push(product);
+
+updateCart();
+openCart();
+
+}
+
+function addToCartByName(name){
+
+const product=productsData.find(
+p=>p.name===name
+);
+
+if(product){
+addToCart(product);
+}
+
+}
+
+function removeCart(index){
+
+cart.splice(index,1);
+
+updateCart();
+
+}
+
+function updateCart(){
+
+const count=
+document.getElementById("cartCount");
+
+count.textContent=
+cart.length;
+
+const items=
+document.getElementById("cartItems");
+
+const total=
+cart.reduce(
+(sum,item)=>sum+item.price,
+0
+);
+
+document
+.getElementById("cartTotal")
+.textContent=
+formatRupiah(total);
+
+if(!cart.length){
+
+items.innerHTML=`
+<div class="cart-empty">
+🛒<br><br>
+Keranjang masih kosong.<br>
+Pilih produk untuk mulai order.
+</div>`;
+
+return;
+
+}
+
+items.innerHTML="";
+
+cart.forEach((item,index)=>{
+
+const row=
+document.createElement("div");
+
+row.className="cart-item";
+
+row.innerHTML=`
+
+<div>
+
+<strong>
+${item.icon} ${item.name}
+</strong>
+
+<span>
+${formatRupiah(item.price)}
+</span>
+
+</div>
+
+<button
+class="remove-cart"
+onclick="removeCart(${index})">
+HAPUS
+</button>
+
+`;
+
+items.appendChild(row);
+
+});
+
+}
+
+function openCart(){
+
+document
+.getElementById("cartPanel")
+.classList.add("show");
+
+}
+
+function closeCart(){
+
+document
+.getElementById("cartPanel")
+.classList.remove("show");
+
+}
+
+document
+.getElementById("cartButton")
+.addEventListener(
+"click",
+openCart
+);
+
+/* ================= CART WHATSAPP ================= */
+
+document
+.getElementById("cartOrder")
+.addEventListener(
+"click",
+()=>{
+
+if(!cart.length){
+
+alert("Keranjang masih kosong.");
+
+return;
+
+}
+
+let message=
+"Halo PANN STORE 👋%0A%0A"+
+"Saya mau order:%0A%0A";
+
+cart.forEach(
+(item,index)=>{
+
+message+=
+(index+1)+". "+
+encodeURIComponent(item.name)+
+" — "+
+encodeURIComponent(
+formatRupiah(item.price)
+)+
+"%0A";
+
+});
+
+const total=
+cart.reduce(
+(sum,item)=>sum+item.price,
+0
+);
+
+message+=
+"%0A💰 TOTAL: "+
+encodeURIComponent(
+formatRupiah(total)
+)+
+"%0A%0A";
+
+message+=
+"Mohon info selanjutnya.";
+
+window.open(
+"https://wa.me/6285879543886?text="+
+message,
+"_blank"
+);
+
+}
+);
+
+/* ================= INTRO VIDEO ================= */
+
+const opening=
+document.getElementById("opening");
+
+const introVideo=
+document.getElementById("introVideo");
+
+const openingContent=
+document.getElementById("openingContent");
+
+const enterStore=
+document.getElementById("enterStore");
+
+const skipIntro=
+document.getElementById("skipIntro");
+
+const bgSound=
+document.getElementById("bgSound");
+
+/* PASTIKAN VIDEO INTRO TIDAK LOOP */
+
+introVideo.loop=false;
+
+function showIntroButton(){
+
+openingContent.classList.add("show");
+
+}
+
+introVideo.addEventListener(
+"ended",
+showIntroButton
+);
+
+introVideo.addEventListener(
+"error",
+showIntroButton
+);
+
+/*
+Jika video terlalu panjang,
+tombol tetap muncul setelah 4 detik.
+*/
+
+setTimeout(
+showIntroButton,
+4000
+);
+
+/* ================= TUTUP INTRO ================= */
+
+function closeOpening(){
+
+/*
+STOP VIDEO INTRO SEPENUHNYA
+saat ENTER STORE / LEWATI INTRO
+*/
+
+introVideo.pause();
+introVideo.currentTime=0;
+introVideo.loop=false;
+
+/*
+TUTUP OVERLAY
+*/
+
+opening.classList.add("hide");
+
+setTimeout(
+()=>{
+opening.style.display="none";
+},
+1000
+);
+
+}
+
+/* ================= ENTER STORE ================= */
+
+enterStore.addEventListener(
+"click",
+()=>{
+
+bgSound.volume=.35;
+
+/*
+MULAI MUSIK
+*/
+
+bgSound.play().catch(()=>{});
+
+/*
+STOP VIDEO + MASUK STORE
+*/
+
+closeOpening();
+
+}
+);
+
+/* ================= SKIP INTRO ================= */
+
+skipIntro.addEventListener(
+"click",
+()=>{
+
+bgSound.volume=.35;
+
+/*
+MULAI MUSIK
+*/
+
+bgSound.play().catch(()=>{});
+
+/*
+STOP VIDEO + MASUK STORE
+*/
+
+closeOpening();
+
+}
+);
+
+/* ================= MUSIC ================= */
+
+const musicBtn=
+document.getElementById("musicBtn");
+
+function updateMusicButton(){
+
+musicBtn.textContent=
+bgSound.paused
+?"🔇"
+:"🔊";
+
+}
+
+musicBtn.addEventListener(
+"click",
+()=>{
+
+if(bgSound.paused){
+
+bgSound.play().catch(()=>{});
+
+}else{
+
+bgSound.pause();
+
+}
+
+updateMusicButton();
+
+});
+
+bgSound.addEventListener(
+"play",
+updateMusicButton
+);
+
+bgSound.addEventListener(
+"pause",
+updateMusicButton
+);
+
+/* ================= SCROLL ================= */
+
+const backTop=
+document.getElementById("backTop");
+
+const stickyOrder=
+document.getElementById("stickyOrder");
+
+window.addEventListener(
+"scroll",
+()=>{
+
+const scrollTop=
+document.documentElement.scrollTop||
+document.body.scrollTop;
+
+const height=
+document.documentElement.scrollHeight-
+document.documentElement.clientHeight;
+
+const progress=
+height>0
+?(scrollTop/height)*100
+:0;
+
+document
+.getElementById("progressBar")
+.style.width=
+progress+"%";
+
+backTop.style.opacity=
+scrollTop>500?"1":"0";
+
+stickyOrder.classList.toggle(
+"show",
+scrollTop>650
+);
+
+}
+);
+
+backTop.addEventListener(
+"click",
+()=>{
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+);
+
+/* ================= REVEAL ================= */
+
+const observer=
+new IntersectionObserver(
+entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target
+.classList
+.add("show");
+
+}
+
+});
+
+},
+{
+threshold:.12
+}
+);
+
+document
+.querySelectorAll(".reveal")
+.forEach(el=>{
+observer.observe(el);
+});
+
+/* ================= COUNTDOWN ================= */
+
+let promoEnd=
+Date.now()+
+24*60*60*1000;
+
+function updateCountdown(){
+
+const distance=
+promoEnd-Date.now();
+
+if(distance<=0){
+
+document.getElementById("days")
+.textContent="00";
+
+document.getElementById("hours")
+.textContent="00";
+
+document.getElementById("minutes")
+.textContent="00";
+
+document.getElementById("seconds")
+.textContent="00";
+
+return;
+
+}
+
+const days=
+Math.floor(
+distance/(1000*60*60*24)
+);
+
+const hours=
+Math.floor(
+(distance/(1000*60*60))%24
+);
+
+const minutes=
+Math.floor(
+(distance/(1000*60))%60
+);
+
+const seconds=
+Math.floor(
+(distance/1000)%60
+);
+
+document.getElementById("days")
+.textContent=
+String(days).padStart(2,"0");
+
+document.getElementById("hours")
+.textContent=
+String(hours).padStart(2,"0");
+
+document.getElementById("minutes")
+.textContent=
+String(minutes).padStart(2,"0");
+
+document.getElementById("seconds")
+.textContent=
+String(seconds).padStart(2,"0");
+
+}
+
+setInterval(
+updateCountdown,
+1000
+);
+
+updateCountdown();
+
+/* ================= INIT ================= */
+
+renderProducts();
+
+updateCart();
+
+updateMusicButton();
+
+</script>
+
+</body>
+</html>
